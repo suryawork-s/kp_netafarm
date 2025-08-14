@@ -152,7 +152,7 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" id="password"
-                                placeholder="Masukkan Password" value="{{ old('password') }}">
+                                placeholder="Masukkan Password">
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -162,8 +162,8 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="repeat_password">Repeat Password</label>
-                            <input type="password" name="repeat_password" class="form-control" id="repeat_password"
-                                placeholder="Masukkan Password" value="{{ old('repeat_password') }}">
+                            <input type="password" name="password_confirmation" class="form-control"
+                                id="password_confirmation" placeholder="Ulangi Password">
                             @error('repeat_password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -183,7 +183,7 @@
         </div>
     </div>
 
-    {{-- <div class="card">
+    <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h4>Data Cuti {{ $user->name }}</h4>
@@ -236,10 +236,10 @@
                 </tbody>
             </table>
         </div>
-    </div> --}}
+    </div>
 
     {{-- Modal Create Data --}}
-    {{-- <div class="modal fade" id="modal-add">
+    <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -274,10 +274,10 @@
             
         </div>
         
-    </div> --}}
+    </div>
 
     <!-- Modal Edit Data -->
-    {{-- <div class="modal fade" id="modal-edit">
+    <div class="modal fade" id="modal-edit">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -318,7 +318,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 @endsection
 
 

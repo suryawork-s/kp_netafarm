@@ -132,7 +132,7 @@
                             @enderror
                         </div>
                     </div>
-                    {{-- <div class="col-md-12" id="attachment-form" hidden>
+                    <div class="col-md-12" id="attachment-form" hidden>
                         <div class="form-group">
                             <label>Lampiran</label>
                             <input type="file" name="attachment" class="form-control" id="attachment">
@@ -140,7 +140,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <a href="#" id="backBtn" class="btn btn-default">Kembali</a>

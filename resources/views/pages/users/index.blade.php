@@ -125,7 +125,7 @@
                         </div>
                     </div>
 
-                    {{-- <h4 class="py-2">Data Cuti</h4>
+                    <h4 class="py-2">Data Cuti</h4>
 
                     <div class="row">
                         <div class="col-md-4">
@@ -142,7 +142,7 @@
                             <label for="cuti">Terpakai</label>
                             <input type="text" name="total" class="form-control" id="cutiTerpakai" disabled>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <!-- /.modal-content -->

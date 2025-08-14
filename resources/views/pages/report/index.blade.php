@@ -111,7 +111,7 @@
                         <th>Tipe</th>
                         <th>Status</th>
                         @if (auth()->user()->role === 'superadmin' || auth()->user()->position_id == 1)
-                        <th>Aksi</th>
+                            <th>Aksi</th>
                         @endif
                     </tr>
                 </thead>
@@ -122,20 +122,22 @@
                             <td>{{ $data->user->name }}</td>
                             <td>{{ $data->leader->name }}</td>
                             <td>{{ $data->date }}</td>
-                            <td>{{ $data->start }}</td>
-                            <td>{{ $data->end }}</td>
+                            {{-- Modifikasi di sini --}}
+                            <td>{{ \Carbon\Carbon::parse($data->start)->format('Y-m-d') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->end)->format('Y-m-d') }}</td>
+                            {{-- Akhir modifikasi --}}
                             <td>{{ $data->description }}</td>
                             <td>{{ ucfirst($data->type) }}</td>
                             <td>{{ ucfirst($data->status) }}</td>
                             @if (auth()->user()->role === 'superadmin' || auth()->user()->position_id == 1)
-                            <td>
-                                <form action="{{ route('dashboard.leaves.destroy', $data->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="" class="btn btn-danger" type="submit">Delete</button>
-                                </form>
+                                <td>
+                                    <form action="{{ route('dashboard.leaves.destroy', $data->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
 
-                            </td>
+                                </td>
                             @endif
                         </tr>
                     @empty

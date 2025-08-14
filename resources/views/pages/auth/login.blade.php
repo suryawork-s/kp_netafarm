@@ -28,10 +28,10 @@
         </div>
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <h1 href="#" class="h1"><b>{{ config('app.name', 'Laravel') }}</b></h1>
+                <h1 href="#" class="h1"><b>Netafarm Login</b></h1>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Silahkan masuk dengan akun anda</p>
+                <p class="login-box-msg">Silahkan masuk dengan akun anda.</p>
 
                 <!-- Konten Form Login Akan Disini -->
                 <form method="POST" action="{{ route('login') }}">
@@ -90,13 +90,13 @@
                     <!-- Remember Me -->
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
+                            {{-- <div class="icheck-primary">
                                 <input type="checkbox" id="remember" name="remember"
                                     {{ old('remember') ? 'checked' : '' }}>
                                 <label for="remember">
                                     {{ __('Ingat saya') }}
                                 </label>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- /.col -->
                         <div class="col-4">

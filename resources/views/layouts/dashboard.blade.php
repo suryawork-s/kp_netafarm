@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Sistem Pengajuan Cuti Netafarm</title>
+    <title>Sistem Pengajuan Kehadiran Netafarm</title>
     {{-- favicon --}}
     <link rel="icon" href="{{ asset('logo.png') }}">
 

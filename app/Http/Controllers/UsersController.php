@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserLeave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
@@ -76,9 +77,24 @@ class UsersController extends Controller
     {
         $user = User::with(['position', 'department'])->find($id);
 
-        $leaves = UserLeave::where('user_id', $id)->where('status', 'active')->where('year', date('Y'))->first();
+        // Ambil data cuti aktif tahun berjalan
+        $leaves = UserLeave::where('user_id', $id)
+            ->where('status', 'active')
+            ->latest('year')
+            ->first();
 
-        return response()->json(['user' => $user, 'leaves' => $leaves]);
+        $totalCuti = $leaves->total ?? 0; // pastikan kolom 'total' ada
+        $usedCuti = $leaves->used ?? 0;   // pastikan kolom 'used' ada
+        $remainingCuti = $totalCuti - $usedCuti;
+
+        return response()->json([
+            'user' => $user,
+            'leaves' => [
+                'total' => $totalCuti,
+                'used' => $usedCuti,
+                'remaining' => $remainingCuti
+            ]
+        ]);
     }
 
     /**
@@ -108,9 +124,10 @@ class UsersController extends Controller
             'phone' => 'required',
             'join_year' => 'required',
             'role' => 'required',
+            'password' => 'nullable|string|min:6|confirmed', // password opsional
         ]);
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         $user->position_id = $request->position_id;
         $user->department_id = $request->department_id;
@@ -120,6 +137,12 @@ class UsersController extends Controller
         $user->phone = $request->phone;
         $user->join_year = $request->join_year;
         $user->status = $request->status;
+
+        // Update password hanya jika field diisi
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
         $user->save();
 
         $user->syncRoles($request->role);

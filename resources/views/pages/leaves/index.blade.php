@@ -53,8 +53,8 @@
                             <td>{{ $data->user->name }}</td>
                             <td>{{ $data->leader->name }}</td>
                             <td>{{ $data->date }}</td>
-                            <td>{{ $data->start }}</td>
-                            <td>{{ $data->end }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->start)->format('Y-m-d') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->end)->format('Y-m-d') }}</td>
                             <td>{{ $data->description }}</td>
                             @if ($type == 'izin' || $type == 'sakit')
                                 <td>{{ ucfirst($data->type) }}</td>
@@ -66,8 +66,8 @@
                             @if (auth()->user()->role === 'superadmin' || auth()->user()->position_id == 1)
                                 <a href="/dashboard/report" class="btn btn-primary">Detail</a>
                                 @if (auth()->user()->role === 'superadmin' || auth()->user()->position_id == 1)
-                                    <button type="" class="btn btn-danger" id="deleteBtn"
-                                        onclick="deleteData({{ $data->id }})">Hapus</button>
+                                    {{-- <button type="" class="btn btn-danger" id="deleteBtn"
+                                        onclick="deleteData({{ $data->id }})">Hapus</button> --}}
                                 @endif
                                 {{-- <a href="{{ route('dashboard.leaves.show', $data->id) }}"
                                     class="btn btn-warning text-white">Print</a> --}}
@@ -87,7 +87,7 @@
                                             onclick="updateStatus('approved')">Terima</a>
                                     </div>
                                 @endif
-                            </div>
+        </div>
     @elseif($data->status == 'rejected')
         @if (auth()->user()->role === 'superadmin' || auth()->user()->position_id == 1)
             <span class="badge badge-danger">Ditolak</span>
